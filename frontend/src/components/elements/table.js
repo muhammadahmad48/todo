@@ -4,13 +4,13 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 
-export default function TodoTable({ todos = [] }) {
+export default function TodoTable({openEditModal=()=>{}, openDeleteModal = () => {}, todos = [] }) {
 
-    const actionBtns = () => {
+  const actionBtns = (data) => {
     return (
       <div className="flex flex-row gap-2 ">
-        <Button icon="pi pi-trash"  severity="danger"/>
-        <Button icon="pi pi-pen-to-square" label="" />
+        <Button onClick={()=>openDeleteModal(data?.id)} icon="pi pi-trash" severity="danger" />
+        <Button onClick={()=>openEditModal(data?.id)} icon="pi pi-pen-to-square"  />
       </div>
     );
   };

@@ -6,7 +6,7 @@ export declare class TodoService {
     create(todoData: TodoDto, user: any): Promise<{
         message: string;
         status: boolean;
-        note: Notes;
+        data: Notes;
     }>;
     getAllTodos(user: any): Promise<{
         data: Notes[];

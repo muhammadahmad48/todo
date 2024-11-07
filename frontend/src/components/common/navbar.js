@@ -13,7 +13,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const isNotAuthRoute = !authRoutes.includes(pathname);
 
-  console.log("-------------pathname-------------", isNotAuthRoute);
   const logoutHandler = () => {
 
     deleteCookie("access_token");

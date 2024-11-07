@@ -6,7 +6,7 @@ import { User } from 'src/database/models/user.model';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([User]),  // Register User model
+    SequelizeModule.forFeature([User]), 
   ],
   controllers: [AuthModuleController],
   providers: [AuthModuleService],

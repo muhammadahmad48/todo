@@ -24,7 +24,7 @@ let TodoService = class TodoService {
         const { id } = user;
         const note = await this.notesRepository.create({ ...todoData, userId: id });
         ;
-        return { message: 'Note created successfully', status: true, note: note };
+        return { message: 'Note created successfully', status: true, data: note };
     }
     async getAllTodos(user) {
         const { id } = user;
@@ -42,16 +42,16 @@ let TodoService = class TodoService {
             },
         });
         if (noteCount === 0) {
-            throw new common_1.HttpException({ message: 'Note not Updated', status: false }, common_1.HttpStatus.NOT_FOUND);
+            throw new common_1.HttpException({ message: 'Todo not Updated', status: false }, common_1.HttpStatus.NOT_FOUND);
         }
-        return { data: noteCount, status: true, message: 'Note Updated Succesffully ' };
+        return { data: noteCount, status: true, message: 'Todo Updated Succesffully ' };
     }
     async delete(todoId) {
         const deletedCount = await this.notesRepository.destroy({ where: { id: todoId } });
         if (deletedCount === 0) {
             throw new common_1.HttpException({ message: 'Note not found', status: false }, common_1.HttpStatus.NOT_FOUND);
         }
-        return { message: 'Note Deleted successfully', status: true };
+        return { message: 'Todo Deleted successfully', status: true };
     }
 };
 exports.TodoService = TodoService;

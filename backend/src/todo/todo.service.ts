@@ -11,7 +11,7 @@ export class TodoService {
     async create(todoData:TodoDto,user:any){
         const {id}=user;
         const note = await this.notesRepository.create({...todoData,userId:id});;
-        return {message: 'Note created successfully',status:true,note:note};
+        return {message: 'Note created successfully',status:true,data:note};
 
     }
 
@@ -44,12 +44,12 @@ export class TodoService {
 
         if (noteCount === 0) {
             throw new HttpException(
-              { message: 'Note not Updated', status: false },
+              { message: 'Todo not Updated', status: false },
               HttpStatus.NOT_FOUND,
             );
         }
 
-        return {data:noteCount,status:true,message:'Note Updated Succesffully '}
+        return {data:noteCount,status:true,message:'Todo Updated Succesffully '}
     
     }
 
@@ -63,7 +63,7 @@ export class TodoService {
             );
         }
 
-        return {message: 'Note Deleted successfully',status:true};
+        return {message: 'Todo Deleted successfully',status:true};
 
     }
 }
