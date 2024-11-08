@@ -63,6 +63,7 @@ export class AuthModuleService {
       where: { email: email },
     });
     if (existingUser) {
+      
       throw new HttpException(
         {
           message: 'Email already exists',

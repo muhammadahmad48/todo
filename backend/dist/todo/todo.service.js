@@ -33,7 +33,7 @@ let TodoService = class TodoService {
     }
     async getTodo(todoId) {
         const note = await this.notesRepository.findOne({ where: { id: todoId } });
-        return { data: note, status: true, message: 'Note Fetch Succesffully ' };
+        return { data: note, status: true, message: 'Todo Fetch Succesffully ' };
     }
     async editTodo(todoData, todoId) {
         const [noteCount] = await this.notesRepository.update({ ...todoData }, {
@@ -49,7 +49,7 @@ let TodoService = class TodoService {
     async delete(todoId) {
         const deletedCount = await this.notesRepository.destroy({ where: { id: todoId } });
         if (deletedCount === 0) {
-            throw new common_1.HttpException({ message: 'Note not found', status: false }, common_1.HttpStatus.NOT_FOUND);
+            throw new common_1.HttpException({ message: 'Todo not found', status: false }, common_1.HttpStatus.NOT_FOUND);
         }
         return { message: 'Todo Deleted successfully', status: true };
     }

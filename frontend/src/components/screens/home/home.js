@@ -11,8 +11,8 @@ const Home = () => {
   return (
   <section className='flex flex-column justify-content-center align-items-center '>
     <div className='w-8 flex flex-column mt-5 gap-2'> 
-      <HomeHead modalType={modalType} setModalType={setModalType}  dispatch={dispatch}/>
-      <HomeBody modalType={modalType} setModalType={setModalType} todos={todos} dispatch={dispatch}/>
+      <HomeHead   dispatch={dispatch}/>
+      <HomeBody  modalType={modalType} setModalType={setModalType} todos={todos} dispatch={dispatch}/>
     </div>
   </section>
 

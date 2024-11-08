@@ -1,0 +1,1 @@
+{"version":3,"file":"20241104134040-create-relationship-user-notes.js","sourceRoot":"","sources":["../../../src/database/migrations/20241104134040-create-relationship-user-notes.js"],"names":[],"mappings":"AAAA,YAAY,CAAC;AAGb,MAAM,CAAC,OAAO,GAAG;IACf,KAAK,CAAC,EAAE,CAAE,cAAc,EAAE,SAAS;IAOnC,CAAC;IAED,KAAK,CAAC,IAAI,CAAE,cAAc,EAAE,SAAS;IAOrC,CAAC;CACF,CAAC"}

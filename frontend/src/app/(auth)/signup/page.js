@@ -7,94 +7,86 @@ import { Button } from "primereact/button";
 import { useRouter } from "next/navigation";
 import { fetchData } from "@/utils/apiUtils";
 import { setCookie } from "cookies-next";
-
+import { useForm } from "react-hook-form";
+import InputField from "@/components/elements/input";
+import { useToast } from "@/components/hooks/toast";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    password: "",
-    address: "",
-  });
-  const router=useRouter();
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const router = useRouter();
+  const showToast=useToast();
 
-  const submitHandler = async (event) => {
+  const {register,handleSubmit,formState: { errors }} = useForm();
+  
+  const onSubmit = async (data) => {
     try {
-      
-      event.preventDefault();
-
       const response = await fetchData(`/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData }),
+        body: JSON.stringify(data),
       });
-            
-      const {status,access_token,data:{userId}} = response;
-      if(status){
-        
-        setCookie('access_token',access_token)
-        setCookie('userId',userId)        
-        router.push('/')
 
+      const {
+        status,
+        access_token,
+        data: { userId },
+      } = response;
+
+      if (status) {
+        setCookie("access_token", access_token);
+        setCookie("userId", userId);
+        router.push("/");
       }
 
-    } catch (err) {
+    } catch (error) {
 
-      console.log(err)
-    
+      showToast({
+        severity: "error",
+        summary: "Error",
+        detail: error?.message || "An unexpected error occurred",
+        life: 3000,
+      });
+
     }
+
   };
+
+
 
   return (
     <section className="">
       <div className="bg-white  border-round-sm p-2  ">
         <h1>Signup Form</h1>
-        <form onSubmit={submitHandler} className="flex flex-column  justify-content-center gap-3">
-          <IconField iconPosition="left">
-            <InputIcon className="pi pi-user"> </InputIcon>
-            <InputText
-              placeholder="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </IconField>
-          <IconField iconPosition="left">
-            <InputIcon className="pi pi-id-card"> </InputIcon>
-            <InputText
-              name="name"
-              placeholder="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          </IconField>
-          <IconField iconPosition="left">
-            <InputIcon className="pi pi-address-book"> </InputIcon>
-            <InputText
-              placeholder="address"
-              name="address"
-              value={formData.address}
-              onChange={handleInputChange}
-            />
-          </IconField>
-          <IconField iconPosition="left">
-            <InputIcon className="pi pi-lock"> </InputIcon>
-            <InputText
-              type="password"
-              placeholder="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-          </IconField>{" "}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-column  justify-content-center gap-3"
+        >
+          <InputField
+            error={errors.email}
+            icon="pi pi-user"
+            register={register("email", { required: "Email  is required" })}
+            placeholder="Email"
+          />
+          <InputField
+            error={errors.name}
+            icon="pi pi-id-card"
+            register={register("name", { required: "Name  is required" })}
+            placeholder="Name"
+          />
+          <InputField
+            error={errors.address}
+            icon="pi pi-address-book"
+            register={register("address", { required: "Address  is required" })}
+            placeholder="Address"
+          />
+          <InputField
+            error={errors.password}
+            icon="pi pi-lock"
+            register={register("password", {
+              required: "Password  is required",
+            })}
+            placeholder="Password"
+          />
           <Button type="submit" label="Submit" />
         </form>
       </div>

@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { TodoDto } from './dto/todo.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Notes } from 'src/database/models/notes.model';
-import { User } from 'src/database/models/user.model';
 
 @Injectable()
 export class TodoService {
@@ -27,7 +26,7 @@ export class TodoService {
     async getTodo(todoId:Number){
 
         const note = await this.notesRepository.findOne({where:{id:todoId}});
-        return {data:note,status:true,message:'Note Fetch Succesffully '}
+        return {data:note,status:true,message:'Todo Fetch Succesffully '}
     
     }
 
@@ -58,7 +57,7 @@ export class TodoService {
         
         if (deletedCount === 0) {
             throw new HttpException(
-              { message: 'Note not found', status: false },
+              { message: 'Todo not found', status: false },
               HttpStatus.NOT_FOUND,
             );
         }
