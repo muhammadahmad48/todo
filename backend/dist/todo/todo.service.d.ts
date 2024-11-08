@@ -13,17 +13,17 @@ export declare class TodoService {
         status: boolean;
         message: string;
     }>;
-    getTodo(todoId: Number): Promise<{
+    getTodo(todoId: number): Promise<{
         data: Notes;
         status: boolean;
         message: string;
     }>;
-    editTodo(todoData: any, todoId: Number): Promise<{
+    editTodo(todoData: any, todoId: number): Promise<{
         data: number;
         status: boolean;
         message: string;
     }>;
-    delete(todoId: Number): Promise<{
+    delete(todoId: number): Promise<{
         message: string;
         status: boolean;
     }>;

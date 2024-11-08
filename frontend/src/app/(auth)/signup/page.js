@@ -12,12 +12,14 @@ import InputField from "@/components/elements/input";
 import { useToast } from "@/components/hooks/toast";
 
 const Signup = () => {
-
   const router = useRouter();
-  const showToast=useToast();
+  const showToast = useToast();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const {register,handleSubmit,formState: { errors }} = useForm();
-  
   const onSubmit = async (data) => {
     try {
       const response = await fetchData(`/auth/signup`, {
@@ -37,21 +39,19 @@ const Signup = () => {
         setCookie("userId", userId);
         router.push("/");
       }
-
     } catch (error) {
-
       showToast({
         severity: "error",
         summary: "Error",
         detail: error?.message || "An unexpected error occurred",
         life: 3000,
       });
-
     }
-
   };
 
-
+  const redirectHandler=()=>{
+    // router.push('/login')
+  }
 
   return (
     <section className="">
@@ -89,6 +89,16 @@ const Signup = () => {
           />
           <Button type="submit" label="Submit" />
         </form>
+        <div className="flex">
+          <h1>Already Account ?</h1>
+          <Button
+            onClick={redirectHandler}
+            type="button"
+            className="p-0"
+            label="Login"
+            text
+          />
+        </div>
       </div>
     </section>
   );

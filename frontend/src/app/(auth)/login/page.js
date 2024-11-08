@@ -47,7 +47,11 @@ const Login = () => {
       });
     }
   };
-
+  
+  const redirectHandler=()=>{
+    router.push('/signup')
+  }
+  
   return (
     <section className="">
       <div className="bg-white  border-round-sm p-2  flex flex-column  justify-content-center">
@@ -74,7 +78,7 @@ const Login = () => {
 
           <div className="flex">
             <h1>Wanna Create Account ?</h1>
-            <Button type="button" className="p-0" label="Signup" text />
+            <Button onClick={redirectHandler} type="button" className="p-0" label="Signup" text />
           </div>
   
         </form>
