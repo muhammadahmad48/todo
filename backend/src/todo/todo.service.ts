@@ -23,7 +23,7 @@ export class TodoService {
 
 
 
-    async getTodo(todoId:Number){
+    async getTodo(todoId:number){
 
         const note = await this.notesRepository.findOne({where:{id:todoId}});
         return {data:note,status:true,message:'Todo Fetch Succesffully '}
@@ -31,7 +31,7 @@ export class TodoService {
     }
 
 
-    async editTodo(todoData:any,todoId:Number){
+    async editTodo(todoData:any,todoId:number){
         const [noteCount] = await this.notesRepository.update(
             { ...todoData },
             {
@@ -52,7 +52,7 @@ export class TodoService {
     
     }
 
-    async delete(todoId:Number){
+    async delete(todoId:number){
         const deletedCount = await this.notesRepository.destroy({where:{id:todoId}});
         
         if (deletedCount === 0) {

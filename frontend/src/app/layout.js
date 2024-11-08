@@ -1,3 +1,6 @@
+import 'primeflex/primeflex.css';
+import 'primeicons/primeicons.css';
+import "primereact/resources/themes/lara-light-green/theme.css";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/common/navbar";

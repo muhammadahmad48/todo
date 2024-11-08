@@ -17,7 +17,8 @@ export default function TodoTable({openEditModal=()=>{}, openDeleteModal = () =>
 
   return (
     <div className="card">
-      <DataTable value={todos} showGridlines tableStyle={{ minWidth: "50rem" }}>
+      <DataTable paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} value={todos} showGridlines tableStyle={{ minWidth: "50rem" }}>
+        <Column field="id" header="Id"></Column>
         <Column field="title" header="Title"></Column>
         <Column field="description" header="Description"></Column>
         <Column field="createdAt" header="Created"></Column>

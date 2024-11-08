@@ -49,6 +49,7 @@ const HomeBody = ({ todos, dispatch, modalType, setModalType }) => {
           label="Cancel"
           severity="danger"
           width={"100%"}
+          onClick={()=>setVisible(false)}
         />
         <ActionButton
           type="submit"

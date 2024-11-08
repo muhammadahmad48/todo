@@ -71,6 +71,12 @@ const Login = () => {
             placeholder="Password"
           />
           <Button type="submit" label="Submit" />
+
+          <div className="flex">
+            <h1>Wanna Create Account ?</h1>
+            <Button type="button" className="p-0" label="Signup" text />
+          </div>
+  
         </form>
       </div>
     </section>

@@ -1,19 +1,9 @@
-import {
-  BadRequestException,
-  ConflictException,
-  ForbiddenException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  UnauthorizedException,
-  UseFilters,
-} from '@nestjs/common';
+import {HttpException,HttpStatus,Injectable} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from 'src/database/models/user.model';
 import { LoginDto, SignupDto } from './dto/data.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 
 @Injectable()
 export class AuthModuleService {
